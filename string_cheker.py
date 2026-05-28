@@ -1,7 +1,7 @@
 # Check that user have entered a valid
 # option base on a list
 def instructions():
-    print("""if you choose (*) that is multiplication.
+    print("""if you choose (x) that is multiplication.
              If you choose (+) that is addition.
              And if you choose (-) that is subtraction.""")
 
