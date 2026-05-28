@@ -43,10 +43,11 @@ elif user_choice == "+":
 elif user_choice == "-":
     feedback = "You chose subtraction"
 elif user_choice == "xxx":
-    feedback = "You chose to excit 🎲"
+    feedback = "You chose to exit 🎲"
 
 else:
     print(error)
+    print("you chose:"feedback)
 
     # Check user has enterd a valid
     # option based on a list.
