@@ -1,6 +1,43 @@
 import math
 import random
 
+# Main routine
+#Quiz variables
+difficulty_list = ["easy", "medium", "hard"]
+mode = "regular"
+rounds_played = 0
+feedback = ""
+
+quiz_history = []
+
+print()
+print("🐉Welcome to the math game🐉")
+print()
+
+def instructions():
+    print("""💜💜Welcome to Math Game.💜💜  
+              💿💿I will be giving you simple math questions and 
+              you are going to answer them. 
+              It is as simple as that! 
+              The questions will be multiplication and addition. 
+              Good luck babe!!💿💿""")
+# Main routine
+
+# ask the user if they want intructions (check they say yes / no)
+want_instructions = yes_no("Do you want to see the instructions? ")
+
+# Display the instructins if the user wants them...
+if want_instructions == "yes":
+    instructions()
+
+#Ask and get what level of difficulty they would like
+print()
+user_choice = string_checker(
+    """Please choose your diffuculty level from E= easy, M= medium, H= hard."""
+    difficulty_list).strip().lower()
+print("You choose: ", user_choice)
+print()
+
 # checks users enter yes (y) or no (n)
 
 def yes_no(question):
@@ -18,22 +55,6 @@ def yes_no(question):
             return "no"
         else:
             print("pleas enter yes / no")
-
-def instructions():
-    print("""💜💜Welcome to Math Game.💜💜  
-              💿💿I will be giving you simple math questions and 
-              you are going to answer them. 
-              It is as simple as that! 
-              The questions will be multiplication and addition. 
-              Good luck babe!!💿💿""")
-# Main routine
-
-# ask the user if they want intructions (check they say yes / no)
-want_instructions = yes_no("Do you want to see the instructions? ")
-
-# Display the instructins if the user wants them...
-if want_instructions == "yes":
-    instructions()
 
 def int_check(question):
     while True:
@@ -161,3 +182,61 @@ def generate_question():
   #Question
    question = f"What is {number1} {operation} {number2}?"
    return question, answer 
+quiz_history = []
+ops = ["+", "-", "x"]
+difuculty_list = ["easy", "medium", "hard"]
+correct_answer = 0
+incorrect_answer = 0
+
+low = 1
+high = None
+
+if user_choice == difficulty_list[0]:
+    high = 20
+    ops = ["+", "x"]
+    exit_code = "xxx"
+
+else:
+    high = 30
+    ops = ["+", "-", "x"]
+    exit_code = "xxx"
+
+#Game loop starts here 
+
+while rounds_played < num_rounds:
+
+    rounds_played += 1
+
+#Question Heading
+if mode == "infinite":
+    rounds_heading = f"\n Queastion {rounds_played} (Infinite Mode)
+    else:
+        rounds_heading = f"\n Question {rounds_played} of {num_rounds} "
+
+    print(rounds_heading)
+    print()
+
+    question = generate_question()
+    user_answer = int_check(question[0])
+
+    #If users enter the exit code, break the loop
+    if user_answer == "xxx":
+        break
+
+    #If users are in the infinite mode, incrase number of rounds
+    if mode == "infinite":
+        num_rounds += 1
+
+#To check if you enterd a number or not and shows you the answer
+if user_answer == question[1]:
+    print(f"Correct! The nswer is {question[1]}!")
+    correct_answer +=1
+
+elif user_answer != question[1]:
+    print(f"Inncorrect! The answer is {question[1]}!")
+    incorrect_answer +=1
+
+else:
+    print(Please enter a number.)
+
+
