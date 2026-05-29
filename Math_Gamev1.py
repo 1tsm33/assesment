@@ -112,13 +112,13 @@ if want_instructions == "yes":
 
 user_choice = string_checker("Chose equation type: ", math_list)
 if user_choice == "x":
-    feedback = "You chose multiplacation"
+    print("You chose multiplacation")
 elif user_choice == "+":
-    feedback = "You chose edition"
+    print("You chose edition")
 elif user_choice == "-":
-    feedback = "You chose subtraction"
+    print("You chose subtraction")
 elif user_choice == "xxx":
-    feedback = "You chose to excit 🎲"
+    print("You chose to exit 🎲")
 
 else:
     print(error)
