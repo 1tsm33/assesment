@@ -1,3 +1,5 @@
+import math
+import random
 
 # checks users enter yes (y) or no (n)
 
@@ -83,11 +85,10 @@ def string_checker (question, valid_ans = ("yes", "no")):
     error = f"please enter a valid option from the folowing list: {valid_ans}"
     while True:
         # Get user response and make sure it is lowercase
-        user_response = input (question).lower()
+        user_response = input(question).lower()
 
         for item in valid_ans:
             # check if the user response is a word in the list
-
             if item == user_response:
                 return item
 
