@@ -1,42 +1,3 @@
-import math
-import random
-
-# Main routine
-#Quiz variables
-difficulty_list = ["easy", "medium", "hard"]
-mode = "regular"
-rounds_played = 0
-feedback = ""
-
-quiz_history = []
-
-print()
-print("🐉Welcome to the math game🐉")
-print()
-
-def instructions():
-    print("""💜💜Welcome to Math Game.💜💜  
-              💿💿I will be giving you simple math questions and 
-              you are going to answer them. 
-              It is as simple as that! 
-              The questions will be multiplication and addition. 
-              Good luck babe!!💿💿""")
-# Main routine
-
-# ask the user if they want intructions (check they say yes / no)
-want_instructions = yes_no("Do you want to see the instructions? ")
-
-# Display the instructins if the user wants them...
-if want_instructions == "yes":
-    instructions()
-
-#Ask and get what level of difficulty they would like
-print()
-user_choice = string_checker(
-    """Please choose your diffuculty level from E= easy, M= medium, H= hard."""
-    difficulty_list).strip().lower()
-print("You choose: ", user_choice)
-print()
 
 # checks users enter yes (y) or no (n)
 
@@ -55,6 +16,22 @@ def yes_no(question):
             return "no"
         else:
             print("pleas enter yes / no")
+
+def instructions():
+    print("""💜💜Welcome to Math Game.💜💜  
+              💿💿I will be giving you simple math questions and 
+              you are going to answer them. 
+              It is as simple as that! 
+              The questions will be multiplication and addition. 
+              Good luck babe!!💿💿""")
+# Main routine
+
+# ask the user if they want intructions (check they say yes / no)
+want_instructions = yes_no("Do you want to see the instructions? ")
+
+# Display the instructins if the user wants them...
+if want_instructions == "yes":
+    instructions()
 
 def int_check(question):
     while True:
@@ -98,7 +75,7 @@ print("program continues")
 # Check that user have entered a valid
 # option base on a list
 def instructions():
-    print("""if you choose (x) that is multiplication.
+    print("""if you choose (*) that is multiplication.
              If you choose (+) that is addition.
              And if you choose (-) that is subtraction.""")
 
@@ -106,10 +83,11 @@ def string_checker (question, valid_ans = ("yes", "no")):
     error = f"please enter a valid option from the folowing list: {valid_ans}"
     while True:
         # Get user response and make sure it is lowercase
-        user_response = input(question).lower()
+        user_response = input (question).lower()
 
         for item in valid_ans:
             # check if the user response is a word in the list
+
             if item == user_response:
                 return item
 
@@ -122,7 +100,6 @@ def string_checker (question, valid_ans = ("yes", "no")):
         print(error)
         print()
 
-# Main routine
 math_list= ["x", "+", "-", "xxx"]
 want_instructions = string_checker("would you like to see the instructions? ")
 print("You chose:  ", want_instructions)
@@ -133,13 +110,13 @@ if want_instructions == "yes":
 
 user_choice = string_checker("Chose equation type: ", math_list)
 if user_choice == "x":
-    print("You chose multiplacation")
+    feedback = "You chose multiplacation"
 elif user_choice == "+":
-    print("You chose edition")
+    feedback = "You chose edition"
 elif user_choice == "-":
-    print("You chose subtraction")
+    feedback = "You chose subtraction"
 elif user_choice == "xxx":
-    print("You chose to exit 🎲")
+    feedback = "You chose to excit 🎲"
 
 else:
     print(error)
@@ -162,81 +139,32 @@ def string_checker(question, valid_ans =("yes", "no")):
          print(error)
          print()
 
-#Question generator
-def generate_question():
-   number1 = random.randint(low,high)
-   number2 = random.randint(low,high)
-   operation = random.choice(ops)
+def equation_generator(question):
+    """Generate equation"""
 
-   #Operations
-   if operation=="x":
-     ans = number1*number2
-   elif operation=="+":
-     ans = number1+number2
-   elif operation=="-":
-     ans = number1-number2
-   else:
-     ans = number1
-     number1 = number1*number2
-  
-  #Question
-   question = f"What is {number1} {operation} {number2}?"
-   return question, answer 
-quiz_history = []
-ops = ["+", "-", "x"]
-difuculty_list = ["easy", "medium", "hard"]
-correct_answer = 0
-incorrect_answer = 0
+    num_question = random.randit (1, 30)
+    num_question_2 = random.randit (1, 30)
 
-low = 1
-high = None
+    num_question_3 = random.randit (1, 20)
+    num_question_4 = random.randit (1, 20)
 
-if user_choice == difficulty_list[0]:
-    high = 20
-    ops = ["+", "x"]
-    exit_code = "xxx"
+    if choice == "+":
+        question = f"{num_question} + {num_question_2}"
+        answer= num_question = num_question_2
 
-else:
-    high = 30
-    ops = ["+", "-", "x"]
-    exit_code = "xxx"
+    elif choice == "-":
+        question = f"{num_question} - {num_question_2}"
+        answer = num_question - num_question_2
 
-#Game loop starts here 
-
-while rounds_played < num_rounds:
-
-    rounds_played += 1
-
-#Question Heading
-if mode == "infinite":
-    rounds_heading = f"\n Queastion {rounds_played} (Infinite Mode)
     else:
-        rounds_heading = f"\n Question {rounds_played} of {num_rounds} "
+        choice == "x"
+        question = f"{num_question_3}x{num_question_4}"
+        answer = num_question_3 * num_question_4
 
-    print(rounds_heading)
+    print(question)
     print()
 
-    question = generate_question()
-    user_answer = int_check(question[0])
+    return question, answer
 
-    #If users enter the exit code, break the loop
-    if user_answer == "xxx":
-        break
-
-    #If users are in the infinite mode, incrase number of rounds
-    if mode == "infinite":
-        num_rounds += 1
-
-#To check if you enterd a number or not and shows you the answer
-if user_answer == question[1]:
-    print(f"Correct! The nswer is {question[1]}!")
-    correct_answer +=1
-
-elif user_answer != question[1]:
-    print(f"Inncorrect! The answer is {question[1]}!")
-    incorrect_answer +=1
-
-else:
-    print(Please enter a number.)
-
+import random
 

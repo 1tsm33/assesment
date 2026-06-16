@@ -1,7 +1,7 @@
 # Check that user have entered a valid
 # option base on a list
 def instructions():
-    print("""if you choose (x) that is multiplication.
+    print("""if you choose (*) that is multiplication.
              If you choose (+) that is addition.
              And if you choose (-) that is subtraction.""")
 
@@ -37,20 +37,21 @@ if want_instructions == "yes":
 
 user_choice = string_checker("Chose equation type : ", math_list)
 if user_choice == "x":
-    feedback = "You chose multiplacation"
+    print("You chose multiplacation")
 elif user_choice == "+":
-    feedback = "You chose edition"
+    print("You chose edition")
 elif user_choice == "-":
-    feedback = "You chose subtraction"
+    print("You chose subtraction")
 elif user_choice == "xxx":
-    feedback = "You chose to exit 🎲"
+
+    print("You chose to exit 🎲")
 
 else:
     print(error)
-    print("you chose:"feedback)
 
     # Check user has enterd a valid
     # option based on a list.
+
 def string_checker(question, valid_ans =("yes", "no")):
 
     while True:
@@ -66,6 +67,5 @@ def string_checker(question, valid_ans =("yes", "no")):
          # Print error if user does not enter something that is valid
          print(error)
          print()
-
 
 
